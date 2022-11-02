@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0"
+    />
+    <title>Project</title>
+
+    <!-- CSS  -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="../static/css/materialize.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+    <link
+      href="../static/css/style.css"
+      type="text/css"
+      rel="stylesheet"
+      media="screen,projection"
+    />
+  </head>
+
+  <body>
+    <div class="section no-pad-bot" id="index-banner">
+      <div class="container">
+        <div class="brand-logo"></div>
+        <h3 class="header center orange-text">
+          Forensic Entomology Age Predictor
+        </h3>
+        <br />
+        <div class="row">
+          <form action="/viz" method="post" class="col s12">
+            <div class="row">
+              <div class="input-field col s4">
+                <br />
+                <select name="temperature">
+                  <option value="" selected disabled>
+                    Choose the temperature
+                  </option>
+                  <option value="25">25° Celsius</option>
+                  <option value="20">20° Celsius</option>
+                  <option value="15">15° Celsius</option>
+                </select>
+                <label for="temperature"><b>Temperature</b></label>
+              </div>
+
+              <div class="input-field col s4">
+                <label for="first_name"><b>Length</b></label>
+                <br />
+                <input
+                  placeholder="Range(0.20000 - 1.90000)"
+                  name="length"
+                  id="first_name"
+                  type="text"
+                  class="validate"
+                />
+              </div>
+              <div class="input-field col s4">
+                <label for="last_name"><b>Weight</b></label>
+                <br />
+                <input
+                  id="last_name"
+                  name="weight"
+                  placeholder="Range(0.00050 - 0.12500)"
+                  type="text"
+                  class="validate"
+                />
+              </div>
+
+              <div class="input-field col s4">
+                <br />
+                <select name="larvelStage">
+                  <option value="" selected disabled>
+                    Select the LarvelStage
+                  </option>
+                  <option value="1">Stage 1</option>
+                  <option value="2">Stage 2</option>
+                  <option value="3">Stage 3</option>
+                  <option value="4">Stage 4</option>
+                </select>
+                <label for="_name"><b>LarvelStage</b></label>
+              </div>
+            </div>
+
+            <div class="row center">
+              <button
+                type="submit"
+                class="btn-large waves-effect waves-light orange"
+              >
+                Predict Age
+              </button>
+            </div>
+          </form>
+          <br />
+          <h4>{{larvae_age}}</h4>
+          <br />
+          {% if tree_v %}
+          <hr />
+          <div class="row center">
+            <div class="image-ref">
+              <a href="{{ tree_v }}">Tree Visualization</a>
+            </div>
+          </div>
+          {% endif %} {% if path_v %}
+          <hr />
+          <div class="row center">
+            <div class="image-ref">
+              <a href="{{ path_v }}">Path Visualization</a>
+            </div>
+          </div>
+          <hr />
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!--  Scripts-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="../static/js/materialize.js"></script>
+    <script src="../static/js/init.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll("select");
+        M.FormSelect.init(elems);
+      });
+    </script>
+  </body>
+</html>
